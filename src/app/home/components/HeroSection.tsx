@@ -1,8 +1,8 @@
 // src/app/home/components/HeroSection.tsx
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Linkedin } from 'lucide-react';
+import Image from 'next/image';
 
 interface HeroSectionProps {
   name: string;
@@ -36,17 +36,18 @@ export default function HeroSection({ name, title, bio, linkedinUrl, profileImag
            </div>
         </div>
          <div className="flex justify-center items-center group perspective-1000">
-           <Avatar className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 border-4 border-background shadow-2xl transform-style-3d transition-transform duration-500 ease-out group-hover:rotate-y-6 group-hover:scale-105">
-             <AvatarImage
+           <div className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full border-4 border-background shadow-2xl overflow-hidden transform-style-3d transition-transform duration-500 ease-out group-hover:rotate-y-6 group-hover:scale-105">
+             <Image
                  src={profileImageUrl}
                  alt={name}
+                 fill
+                 priority
+                 sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 320px"
+                 style={{ objectFit: 'cover' }}
                  className="transition-transform duration-500 ease-out group-hover:scale-110"
                  data-ai-hint="professional headshot portrait man indian glasses studio light"
              />
-              <AvatarFallback className="text-6xl font-semibold bg-gradient-to-br from-primary/10 to-secondary/10">
-                 {name?.split(' ').map(n => n[0]).join('') || 'AK'} {/* Initials Fallback */}
-             </AvatarFallback>
-           </Avatar>
+           </div>
          </div>
       </div>
     </section>
