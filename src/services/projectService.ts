@@ -150,7 +150,7 @@ export async function getAllProjects(): Promise<Project[]> {
     }
     let querySnapshot;
     try {
-        const q = query(projectsCollection, orderBy('order', 'asc'));
+        const q = query(projectsCollection, orderBy('createdAt', 'desc'));
         querySnapshot = await getDocsFromServer(q); // Force server fetch
 
         if (querySnapshot.empty) {
@@ -170,7 +170,7 @@ export async function getAllProjects(): Promise<Project[]> {
                     return [];
                 }
                 console.log(`Fallback fetch successful for site "${siteId}", found ${querySnapshot.size} projects.`);
-                return querySnapshot.docs.map(mapFirestoreDocToProject).sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+                return querySnapshot.docs.map(mapFirestoreDocToProject).sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
             } catch (fallbackError: any) {
                 console.error(`Error fetching projects for site "${siteId}" (fallback):`, fallbackError.message || fallbackError);
                 console.warn(`Serving empty project array for site "${siteId}" as final fallback.`);
@@ -193,7 +193,7 @@ export async function getFeaturedProjects(count: number = 3): Promise<Project[]>
     }
    let querySnapshot;
    try {
-    const q = query(projectsCollection, orderBy('order', 'asc'), limit(count));
+    const q = query(projectsCollection, orderBy('createdAt', 'desc'), limit(count));
     querySnapshot = await getDocsFromServer(q); // Force server fetch
 
      if (querySnapshot.empty && count > 0) {
@@ -214,7 +214,7 @@ export async function getFeaturedProjects(count: number = 3): Promise<Project[]>
                  return [];
             }
              console.log(`Fallback fetch successful for site "${siteId}", found ${querySnapshot.size} featured projects.`);
-            return querySnapshot.docs.map(mapFirestoreDocToProject).sort((a, b) => (a.order ?? 999) - (b.order ?? 999)).slice(0, count);
+            return querySnapshot.docs.map(mapFirestoreDocToProject).sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()).slice(0, count);
         } catch (fallbackError: any) {
             console.error(`Error fetching featured projects for site "${siteId}" (fallback):`, fallbackError.message || fallbackError);
             console.warn(`Serving empty featured project array for site "${siteId}" as final fallback.`);

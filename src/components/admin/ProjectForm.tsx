@@ -234,7 +234,7 @@ const ProjectForm: FC<ProjectFormProps> = ({ initialData, isEditing }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Existing Fields: Title, Order, Description */}
+        {/* Fields: Title, Slug, Description */}
          <FormField
           control={form.control}
           name="title"
@@ -267,29 +267,6 @@ const ProjectForm: FC<ProjectFormProps> = ({ initialData, isEditing }) => {
           )}
         />
 
-         <FormField
-          control={form.control}
-          name="order"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Order</FormLabel>
-              <FormControl>
-                <Input
-                   type="number"
-                   placeholder="Enter display order (e.g., 1, 2, 3)"
-                   {...field}
-                    // Ensure value passed to form state is a number or string that can be parsed
-                   onChange={(e) => field.onChange(parseInt(e.target.value, 10))} // Store as number
-                   value={field.value ?? ''} // Handle potential undefined/null for controlled input
-                 />
-              </FormControl>
-               <FormDescription>
-                 Lower numbers appear first. Use this to order projects on the main page. Defaults to 999 if empty.
-               </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
          <FormField
           control={form.control}
