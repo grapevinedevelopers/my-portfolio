@@ -3,30 +3,29 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Public read access for blog posts and projects
-    match /blogPosts/{postId} {
-      allow read: if true;
-      // Allow authenticated users to write (adjust as needed for specific roles)
-      allow write: if request.auth != null;
+    // Site-aware structure: all data lives under /sites/{siteId}/...
+    match /sites/{siteId} {
+
+      // Personal details: public read for 'main' doc, write requires auth
+      match /personalDetails/{docId} {
+        allow read: if docId == 'main';
+        allow write: if request.auth != null && docId == 'main';
+      }
+
+      // Blog posts: public read, write requires auth
+      match /blogPosts/{postId} {
+        allow read: if true;
+        allow write: if request.auth != null;
+      }
+
+      // Projects: public read, write requires auth
+      match /projects/{projectId} {
+        allow read: if true;
+        allow write: if request.auth != null;
+      }
     }
 
-    match /projects/{projectId} {
-      allow read: if true;
-      // Allow authenticated users to write (adjust as needed for specific roles)
-      allow write: if request.auth != null;
-    }
-
-    // Allow authenticated users to read/write the 'main' personal details document
-    match /personalDetails/{docId} {
-      // Public read access for the 'main' document
-      allow read: if docId == 'main';
-      // Allow *only* authenticated users to write to the 'main' document
-      allow write: if request.auth != null && docId == 'main';
-      // Deny access to any other documents in this collection
-      allow read, write: if false;
-    }
-
-    // Default deny all other access to prevent unintended data exposure
+    // Default deny all other access
     match /{document=**} {
       allow read, write: if false;
     }

@@ -129,7 +129,7 @@ export default function Header() {
           <NavLink href="/#blog">Blog</NavLink>
           <NavLink href="/#projects">Projects</NavLink>
           <NavLink href="/#resume">Resume</NavLink>
-          <NavLink href="/fd-calculator">FD Calculator</NavLink>
+
           <NavLink href="/#contact">Contact</NavLink>
           {/* Admin/Auth Button - Desktop */}
           <div className="flex items-center space-x-2 pl-4"> {/* Added pl-4 */}
@@ -181,7 +181,7 @@ export default function Header() {
                 <MobileNavLink href="/#blog">Blog</MobileNavLink>
                 <MobileNavLink href="/#projects">Projects</MobileNavLink>
                 <MobileNavLink href="/#resume">Resume</MobileNavLink>
-                <MobileNavLink href="/fd-calculator">FD Calculator</MobileNavLink>
+
                 <MobileNavLink href="/#contact">Contact</MobileNavLink>
                 <hr className="my-4 border-border/40" />
                 {/* Mobile Auth Button */}
