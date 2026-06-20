@@ -3,8 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, FolderKanban } from 'lucide-react';
+import { ArrowRight, FolderKanban, CalendarDays } from 'lucide-react';
 import type { Project } from '@/services/projectService';
+import { format } from 'date-fns';
 
 interface ProjectSectionProps {
   projects: Project[]; // Expects projects for the specific site
@@ -43,6 +44,12 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
              </div>
               {/* Content Section */}
               <CardContent className="p-6">
+                 {project.createdAt && (
+                   <p className="text-xs text-muted-foreground/80 mb-3 flex items-center gap-1.5 font-medium">
+                     <CalendarDays className="w-3.5 h-3.5 text-primary/70" />
+                     {format(new Date(project.createdAt), 'MMMM d, yyyy')}
+                   </p>
+                 )}
                  <p className="text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">{project.description}</p>
                  <div className="flex flex-wrap gap-2">
                     {(project.tags || []).map(tag => (

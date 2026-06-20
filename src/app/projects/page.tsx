@@ -3,8 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CalendarDays } from 'lucide-react';
 import { getAllProjects } from '@/services/projectService'; // Service is now site-aware
+import { format } from 'date-fns';
 
 export default async function ProjectsIndexPage() {
   // Fetch all projects for the current site (implicitly determined by env var in service)
@@ -38,9 +39,15 @@ export default async function ProjectsIndexPage() {
                  <CardTitle className="text-xl font-semibold text-white leading-tight">{project.title}</CardTitle>
                </div>
              </div>
-             <CardContent className="p-6">
-               {/* Use line-clamp-3 for description */}
-               <p className="text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">{project.description}</p>
+              <CardContent className="p-6">
+                {project.createdAt && (
+                  <p className="text-xs text-muted-foreground/80 mb-3 flex items-center gap-1.5 font-medium">
+                    <CalendarDays className="w-3.5 h-3.5 text-primary/70" />
+                    {format(new Date(project.createdAt), 'MMMM d, yyyy')}
+                  </p>
+                )}
+                {/* Use line-clamp-3 for description */}
+                <p className="text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">{project.description}</p>
                <div className="flex flex-wrap gap-2">
                  {(project.tags || []).map(tag => (
                    <span key={tag} className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">{tag}</span>
