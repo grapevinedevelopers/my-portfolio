@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* Apply Poppins font family directly */
+  font-family: 'Poppins', sans-serif;
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1; /* Enable optional ligatures */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@layer base {
+  :root {
+    /* Light Mode - Vibrant & Modern Palette */
+    --background: 0 0% 100%; /* White */
+    --foreground: 240 10% 3.9%; /* Near Black */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 240 10% 3.9%; /* Near Black */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 240 10% 3.9%; /* Near Black */
+
+    --primary: 260 70% 55%; /* Vibrant Purple */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 240 4.8% 95.9%; /* Light Gray */
+    --secondary-foreground: 240 5.9% 10%; /* Dark Blue/Gray */
+
+    --muted: 240 4.8% 95.9%; /* Light Gray */
+    --muted-foreground: 240 3.8% 46.1%; /* Medium Gray */
+
+    --accent: 260 70% 96%; /* Light Purple Accent */
+    --accent-foreground: 260 70% 40%; /* Darker Purple for Accent Text */
+
+    --destructive: 0 84.2% 60.2%; /* Default Red */
+    --destructive-foreground: 0 0% 98%; /* Near White */
+
+    --border: 240 5.9% 90%; /* Light Gray Border */
+    --input: 240 5.9% 90%; /* Light Gray Border */
+    --ring: 260 70% 55%; /* Vibrant Purple Ring */
+
+    --chart-1: 260 70% 55%; /* Primary Purple */
+    --chart-2: 190 70% 50%; /* Teal */
+    --chart-3: 30 80% 60%; /* Orange */
+    --chart-4: 340 80% 65%; /* Pink */
+    --chart-5: 120 50% 50%; /* Green */
+
+    --radius: 0.75rem; /* Consistent radius */
+  }
+
+  .dark {
+    /* Dark Mode - Vibrant & Modern Palette */
+    --background: 240 10% 3.9%; /* Very Dark Blue/Black */
+    --foreground: 0 0% 98%; /* Near White */
+
+    --card: 240 8% 10%; /* Slightly Lighter Dark */
+    --card-foreground: 0 0% 98%; /* Near White */
+
+    --popover: 240 10% 3.9%; /* Very Dark Blue/Black */
+    --popover-foreground: 0 0% 98%; /* Near White */
+
+    --primary: 260 75% 65%; /* Lighter Vibrant Purple */
+    --primary-foreground: 240 5.9% 10%; /* Dark Blue/Gray for contrast */
+
+    --secondary: 240 3.7% 15.9%; /* Dark Gray */
+    --secondary-foreground: 0 0% 98%; /* Near White */
+
+    --muted: 240 3.7% 15.9%; /* Dark Gray */
+    --muted-foreground: 240 5% 64.9%; /* Medium Gray */
+
+    --accent: 260 70% 18%; /* Dark Purple Accent */
+    --accent-foreground: 260 75% 80%; /* Lighter Purple for Accent Text */
+
+    --destructive: 0 72.2% 50.6%; /* Slightly brighter red for dark mode */
+    --destructive-foreground: 0 0% 98%; /* Near White */
+
+    --border: 240 3.7% 15.9%; /* Dark Gray Border */
+    --input: 240 3.7% 15.9%; /* Dark Gray Border */
+    --ring: 260 75% 65%; /* Lighter Vibrant Purple Ring */
+
+    --chart-1: 260 75% 65%; /* Lighter Primary Purple */
+    --chart-2: 190 65% 60%; /* Lighter Teal */
+    --chart-3: 30 75% 70%; /* Lighter Orange */
+    --chart-4: 340 75% 70%; /* Lighter Pink */
+    --chart-5: 120 45% 60%; /* Lighter Green */
+  }
+}
+
+@layer utilities {
+  /* Add perspective utilities */
+  .perspective-1000 { perspective: 1000px; }
+  .transform-style-3d { transform-style: preserve-3d; }
+  /* Add rotate utilities (example) */
+  .rotate-y-6 { transform: rotateY(6deg); }
+
+  /* Tiptap basic styling */
+  .tiptap {
+    > * + * {
+      margin-top: 0.75em;
+    }
+
+    ul,
+    ol {
+      padding: 0 1rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.1;
+    }
+
+    code {
+      background-color: hsl(var(--muted));
+      color: hsl(var(--muted-foreground));
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.25rem;
+      font-size: 0.9rem;
+      font-family: monospace;
+    }
+
+    pre {
+      background: hsl(var(--muted));
+      color: hsl(var(--muted-foreground));
+      font-family: 'JetBrainsMono', monospace;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+
+      code {
+        color: inherit;
+        padding: 0;
+        background: none;
+        font-size: 0.8rem;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    blockquote {
+      padding-left: 1rem;
+      border-left: 3px solid hsl(var(--border));
+      font-style: italic;
+      color: hsl(var(--muted-foreground));
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid hsl(var(--border));
+      margin: 2rem 0;
+    }
+
+    a {
+        color: hsl(var(--primary));
+        text-decoration: underline;
+        cursor: pointer;
+    }
+  }
+
+   /* Ensure justify alignment works within prose */
+  .prose [style*="text-align: justify"] {
+    text-align: justify !important; /* Use !important to override Tailwind prose defaults if necessary */
+  }
+}
+
+
+/* Smooth transitions for colors and shadows */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+h1 { @apply text-5xl md:text-6xl lg:text-7xl; }
+h2 { @apply text-4xl md:text-5xl lg:text-6xl; }
+h3 { @apply text-3xl md:text-4xl; }
+h4 { @apply text-2xl; }
+
+/* Improve focus states */
+*:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Subtle hover effect for links */
+a:not(.button) { /* Avoid applying to button-styled links */
+  @apply transition-colors duration-200 hover:text-primary;
+}
+
+/* Card hover enhancements */
+.card-hover-effect {
+  @apply transition-all duration-300 ease-out hover:shadow-2xl hover:-translate-y-1 hover:border-primary/50;
+}
+
+/* Gradient Text */
+.text-gradient {
+  @apply bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent;
+}

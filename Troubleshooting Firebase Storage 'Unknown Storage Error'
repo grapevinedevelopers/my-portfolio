@@ -1,0 +1,38 @@
+The error message "An unknown storage error occurred. Please check server logs or storage rules. (Code: storage/unknown)" indicates that Firebase Storage couldn't process the image upload request, but the reason isn't one of the standard, easily identifiable issues (like permission denied, quota exceeded, etc.).
+
+This usually points to a configuration problem, most commonly with **Firebase Storage Rules**.
+
+Here's how to troubleshoot:
+
+1.  **Check Firebase Storage Rules:** This is the most likely cause.
+    *   Go to your Firebase Console.
+    *   Navigate to **Storage** (under Build).
+    *   Click the **Rules** tab.
+    *   Ensure your rules allow authenticated users to write (`create`, `update`, `delete`) files to the `projectImages/{projectId}/{imageId}` path. A very basic rule to allow any authenticated user to write would look like this ( **Note:** You should refine this for better security later):
+        ```
+        rules_version = '2';
+        service firebase.storage {
+          match /b/{bucket}/o {
+            // Allow writes to projectImages path only if the user is authenticated
+            match /projectImages/{projectId}/{imageId} {
+              allow write: if request.auth != null;
+
+              // Allow anyone to read images (adjust if needed)
+              allow read; 
+            }
+          }
+        }
+        ```
+    *   **Publish your changes** after editing the rules.
+
+2.  **Verify Storage Bucket Configuration:**
+    *   In your Firebase Console, go to **Storage** -> **Files** tab. Confirm the bucket name (it usually looks like `your-project-id.appspot.com`).
+    *   Double-check that this *exact* name matches the `storageBucket` value in your `src/lib/firebase.ts` configuration file.
+
+3.  **Check Detailed Server Logs:**
+    *   When the error occurs, check the console output where your Next.js application is running (your terminal or server logs).
+    *   Look for the more detailed error message that includes `Detailed Storage Error Payload:`. This payload might contain more specific clues from Firebase about the failure.
+
+4.  **Firebase Project Status:** Briefly check the [Firebase Status Dashboard](https://status.firebase.google.com/) to rule out any ongoing Firebase-wide issues with Cloud Storage.
+
+Start by checking and publishing your Storage Rules, as that's the most common reason for this type of error.
