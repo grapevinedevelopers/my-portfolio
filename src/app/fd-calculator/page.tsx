@@ -541,17 +541,6 @@ export default function FDCalculatorPage() {
 
         {/* Outer container & Preset Button */}
         <div className="w-full max-w-5xl mx-auto space-y-6">
-          <div className="flex justify-end items-center mb-4">
-            <Button
-              onClick={loadPreset}
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-1.5 shadow-sm text-xs border-2 hover:bg-muted"
-            >
-              <RefreshCw className="w-3.5 h-3.5" /> Reset to Excel Template Defaults
-            </Button>
-          </div>
-
           <TooltipProvider delayDuration={200}>
             {/* ========================================== */}
             {/* INPUTS CONTAINER (TOP PANEL)               */}
@@ -1019,7 +1008,7 @@ export default function FDCalculatorPage() {
               </div>
 
               <div className={`px-4 py-2 rounded-xl text-center shrink-0 ${bannerStyle.badge}`}>
-                <span className="block text-[9px] uppercase tracking-wider font-bold">Net Benefit</span>
+                <span className="block text-[9px] uppercase tracking-wider font-bold">{results.netBenefit >= 0 ? "Net Benefit" : "Net Loss"}</span>
                 <span className="text-lg font-black font-mono">
                   {results.netBenefit >= 0 ? "+" : ""}{formatRupee(results.netBenefit)}
                 </span>
@@ -1230,7 +1219,7 @@ export default function FDCalculatorPage() {
                                       <span className="font-mono text-primary font-bold">{formatRupee(data.reinvestValue)}</span>
                                     </p>
                                     <p className="flex justify-between gap-4 font-bold">
-                                      <span>Net Benefit:</span>
+                                      <span>{data.benefit >= 0 ? "Net Benefit" : "Net Loss"}:</span>
                                       <span className={data.benefit >= 0 ? "text-emerald-500 font-mono" : "text-rose-500 font-mono"}>
                                         {data.benefit >= 0 ? "+" : ""}{formatRupee(data.benefit)}
                                       </span>
