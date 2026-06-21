@@ -527,14 +527,14 @@ export default function FDCalculatorPage() {
 
         {/* Intro Header */}
         <div className="flex flex-col items-center text-center space-y-4 mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold">
             <Coins className="w-4 h-4" />
             FD Decision Optimizer
           </div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             Fixed Deposit Premature Break Calculator
           </h1>
-          <p className="text-muted-foreground max-w-2xl leading-relaxed text-sm md:text-base">
+          <p className="text-muted-foreground max-w-2xl leading-relaxed text-base md:text-base">
             Should you break your existing FD to reinvest at a higher interest rate? Fill in your deposit parameters below to visualize the profitability curve.
           </p>
         </div>
@@ -547,11 +547,11 @@ export default function FDCalculatorPage() {
             {/* ========================================== */}
             <Card className="shadow-md border border-border/80 backdrop-blur-sm bg-card/60 mb-8">
               <CardHeader className="bg-muted/30 pb-3 border-b">
-                <CardTitle className="text-sm font-bold flex items-center gap-2 text-foreground">
+                <CardTitle className="text-base font-bold flex items-center gap-2 text-foreground">
                   <Sliders className="w-4 h-4 text-primary" />
                   FD Configuration Parameters
                 </CardTitle>
-                <CardDescription className="text-[11px]">
+                <CardDescription className="text-[13px]">
                   Fill in your current Fixed Deposit details, premature break information, and the new reinvestment rate.
                 </CardDescription>
               </CardHeader>
@@ -562,15 +562,15 @@ export default function FDCalculatorPage() {
                   {/* Col 1: Original FD Setup */}
                   <div className="space-y-4 p-4 rounded-xl bg-muted/20 border">
                     <div className="border-b pb-1.5 mb-1 flex items-center justify-between">
-                      <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                        <span className="w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] flex items-center justify-center font-bold">1</span>
+                      <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                        <span className="w-4 h-4 rounded-full bg-primary/15 text-primary text-[12px] flex items-center justify-center font-bold">1</span>
                         Original FD Setup
                       </h4>
                     </div>
 
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <Label htmlFor="e-principal" className="text-[11px] font-semibold flex items-center gap-1">
+                        <Label htmlFor="e-principal" className="text-[13px] font-semibold flex items-center gap-1">
                           Principal (₹)
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -579,7 +579,7 @@ export default function FDCalculatorPage() {
                             <TooltipContent>Original sum of money deposited in the Fixed Deposit</TooltipContent>
                           </Tooltip>
                         </Label>
-                        <span className="text-primary font-mono text-xs font-bold">{formatRupee(Number(principal) || 0)}</span>
+                        <span className="text-primary font-mono text-sm font-bold">{formatRupee(Number(principal) || 0)}</span>
                       </div>
                       <Slider
                         min={10000}
@@ -593,13 +593,13 @@ export default function FDCalculatorPage() {
                         type="text"
                         value={principal}
                         onChange={(e) => setPrincipal(cleanNumericInput(e.target.value))}
-                        className="h-8 font-mono text-xs"
+                        className="h-8 font-mono text-sm"
                       />
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
                       <div className="space-y-1">
-                        <Label htmlFor="e-orig-roi" className="text-[11px] font-semibold flex items-center gap-1">
+                        <Label htmlFor="e-orig-roi" className="text-[13px] font-semibold flex items-center gap-1">
                           Original ROI (%)
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -613,11 +613,11 @@ export default function FDCalculatorPage() {
                           type="text"
                           value={originalRoi}
                           onChange={(e) => setOriginalRoi(cleanNumericInput(e.target.value))}
-                          className="h-8 text-xs"
+                          className="h-8 text-sm"
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label htmlFor="e-issue" className="text-[11px] font-semibold flex items-center gap-1">
+                        <Label htmlFor="e-issue" className="text-[13px] font-semibold flex items-center gap-1">
                           Issue Date
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -631,13 +631,13 @@ export default function FDCalculatorPage() {
                           type="date"
                           value={issueDate}
                           onChange={(e) => setIssueDate(e.target.value)}
-                          className="w-full bg-background border rounded-md px-1.5 py-1 text-xs outline-none h-8 font-medium cursor-pointer"
+                          className="w-full bg-background border rounded-md px-1.5 py-1 text-sm outline-none h-8 font-medium cursor-pointer"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <Label className="text-[11px] font-semibold flex items-center gap-1">
+                      <Label className="text-[13px] font-semibold flex items-center gap-1">
                         Original Duration
                         <Tooltip>
                           <TooltipTrigger asChild>
@@ -651,19 +651,19 @@ export default function FDCalculatorPage() {
                           type="text"
                           value={durationValue}
                           onChange={(e) => setDurationValue(cleanNumericInput(e.target.value))}
-                          className="col-span-2 h-8 text-xs"
+                          className="col-span-2 h-8 text-sm"
                         />
                         <select
                           value={durationUnit}
                           onChange={(e) => setDurationUnit(e.target.value)}
-                          className="bg-background border rounded-md px-1 py-1 text-xs outline-none h-8 font-medium cursor-pointer"
+                          className="bg-background border rounded-md px-1 py-1 text-sm outline-none h-8 font-medium cursor-pointer"
                         >
                           <option value="days">Days</option>
                           <option value="months">Months</option>
                           <option value="years">Years</option>
                         </select>
                       </div>
-                      <p className="text-[9px] text-muted-foreground flex items-center gap-1 pt-1">
+                      <p className="text-[11px] text-muted-foreground flex items-center gap-1 pt-1">
                         <CalendarCheck2 className="w-3 h-3 text-primary shrink-0" />
                         Maturity: <span className="font-semibold text-foreground font-mono">{results.calcMaturityDateStr}</span>
                       </p>
@@ -673,15 +673,15 @@ export default function FDCalculatorPage() {
                   {/* Col 2: Premature Break Conditions */}
                   <div className="space-y-4 p-4 rounded-xl bg-muted/20 border">
                     <div className="border-b pb-1.5 mb-1 flex items-center justify-between">
-                      <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                        <span className="w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] flex items-center justify-center font-bold">2</span>
+                      <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                        <span className="w-4 h-4 rounded-full bg-primary/15 text-primary text-[12px] flex items-center justify-center font-bold">2</span>
                         Premature Break
                       </h4>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
                       <div className="space-y-1">
-                        <Label htmlFor="e-break" className="text-[11px] font-semibold flex items-center gap-1">
+                        <Label htmlFor="e-break" className="text-[13px] font-semibold flex items-center gap-1">
                           Break Date
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -695,19 +695,19 @@ export default function FDCalculatorPage() {
                           type="date"
                           value={breakDate}
                           onChange={(e) => setBreakDate(e.target.value)}
-                          className="w-full bg-background border rounded-md px-1.5 py-1 text-xs outline-none h-8 font-medium cursor-pointer"
+                          className="w-full bg-background border rounded-md px-1.5 py-1 text-sm outline-none h-8 font-medium cursor-pointer"
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label className="text-[11px] font-semibold text-muted-foreground">Elapsed Days</Label>
-                        <div className="h-8 flex items-center px-2 bg-muted/60 rounded-md border text-xs font-mono font-bold text-foreground">
+                        <Label className="text-[13px] font-semibold text-muted-foreground">Elapsed Days</Label>
+                        <div className="h-8 flex items-center px-2 bg-muted/60 rounded-md border text-sm font-mono font-bold text-foreground">
                           {results.daysElapsed} Days
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <Label htmlFor="e-elapsed" className="text-[11px] font-semibold flex items-center justify-between gap-1 w-full">
+                      <Label htmlFor="e-elapsed" className="text-[13px] font-semibold flex items-center justify-between gap-1 w-full">
                         <span className="flex items-center gap-1">
                           Elapsed ROI (%)
                           <Tooltip>
@@ -718,9 +718,9 @@ export default function FDCalculatorPage() {
                           </Tooltip>
                         </span>
                         {useSlabRates ? (
-                          <span className="text-[9px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold">Slab Auto</span>
+                          <span className="text-[11px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold">Slab Auto</span>
                         ) : (
-                          <span className="text-[9px] bg-amber-500/10 text-amber-600 px-1.5 py-0.5 rounded font-bold">Manual</span>
+                          <span className="text-[11px] bg-amber-500/10 text-amber-600 px-1.5 py-0.5 rounded font-bold">Manual</span>
                         )}
                       </Label>
                       <Input
@@ -729,10 +729,10 @@ export default function FDCalculatorPage() {
                         value={useSlabRates ? getLookupRate(results.daysElapsed).toFixed(2) : elapsedRoi}
                         onChange={(e) => setElapsedRoi(cleanNumericInput(e.target.value))}
                         disabled={useSlabRates}
-                        className={`h-8 text-xs font-mono ${useSlabRates ? "bg-muted/80 font-semibold cursor-not-allowed text-muted-foreground" : ""}`}
+                        className={`h-8 text-sm font-mono ${useSlabRates ? "bg-muted/80 font-semibold cursor-not-allowed text-muted-foreground" : ""}`}
                       />
                       {useSlabRates && (
-                        <p className="text-[9px] text-muted-foreground flex items-start gap-1 pt-0.5">
+                        <p className="text-[11px] text-muted-foreground flex items-start gap-1 pt-0.5">
                           <Info className="w-3 h-3 text-primary shrink-0 mt-0.5" />
                           <span>Auto-calculated from slab rates. Edit the <span className="font-semibold text-foreground">Rate Slabs table</span> below to change this.</span>
                         </p>
@@ -741,7 +741,7 @@ export default function FDCalculatorPage() {
 
                     <div className="p-2.5 bg-background rounded border space-y-2">
                       <div className="flex items-center justify-between">
-                        <Label htmlFor="e-apply-penalty" className="text-[11px] font-bold">
+                        <Label htmlFor="e-apply-penalty" className="text-[13px] font-bold">
                           Premature Penalty
                         </Label>
                         <Switch
@@ -753,7 +753,7 @@ export default function FDCalculatorPage() {
                       </div>
                       {applyPenalty && (
                         <div className="space-y-1">
-                          <Label htmlFor="e-penalty" className="text-[11px] font-semibold flex items-center gap-1">
+                          <Label htmlFor="e-penalty" className="text-[13px] font-semibold flex items-center gap-1">
                             Penalty Fee (%)
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -767,7 +767,7 @@ export default function FDCalculatorPage() {
                             type="text"
                             value={penalty}
                             onChange={(e) => setPenalty(cleanNumericInput(e.target.value))}
-                            className="h-8 text-xs font-mono"
+                            className="h-8 text-sm font-mono"
                           />
                         </div>
                       )}
@@ -778,14 +778,14 @@ export default function FDCalculatorPage() {
                   <div className="space-y-4 p-4 rounded-xl bg-muted/20 border flex flex-col justify-between">
                     <div className="space-y-4">
                       <div className="border-b pb-1.5 mb-1 flex items-center justify-between">
-                        <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                          <span className="w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] flex items-center justify-center font-bold">3</span>
+                        <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                          <span className="w-4 h-4 rounded-full bg-primary/15 text-primary text-[12px] flex items-center justify-center font-bold">3</span>
                           New Reinvestment ROI
                         </h4>
                       </div>
 
                       <div className="space-y-2 pt-2">
-                        <Label htmlFor="e-new-roi" className="text-[11px] font-semibold flex items-center gap-1">
+                        <Label htmlFor="e-new-roi" className="text-[13px] font-semibold flex items-center gap-1">
                           New Reinvestment ROI (%)
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -799,15 +799,15 @@ export default function FDCalculatorPage() {
                           type="text"
                           value={newRoi}
                           onChange={(e) => setNewRoi(cleanNumericInput(e.target.value))}
-                          className="h-9 font-semibold text-sm"
+                          className="h-9 font-semibold text-base"
                         />
-                        <p className="text-[10px] text-muted-foreground leading-normal">
+                        <p className="text-[12px] text-muted-foreground leading-normal">
                           We will reinvest your premature payout in a new FD at this rate for the remaining duration.
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-2 text-[10px] text-muted-foreground italic flex items-center gap-1.5 border-t">
+                    <div className="pt-2 text-[12px] text-muted-foreground italic flex items-center gap-1.5 border-t">
                       <Info className="w-3.5 h-3.5 text-primary shrink-0" />
                       Calculates days using actual calendar dates.
                     </div>
@@ -822,16 +822,16 @@ export default function FDCalculatorPage() {
           {/* Collapsible Slabs Configuration Card */}
           <Card className="shadow-sm border border-border/80 backdrop-blur-sm bg-card/60 mb-6">
             <details className="group">
-              <summary className="flex justify-between items-center p-4 cursor-pointer select-none font-bold text-sm text-foreground">
+              <summary className="flex justify-between items-center p-4 cursor-pointer select-none font-bold text-base text-foreground">
                 <div className="flex items-center gap-2">
                   <Percent className="w-4 h-4 text-primary" />
                   Interest Rate Slabs Configuration (Optional)
                 </div>
                 <div className="flex items-center gap-2 font-medium">
                   {useSlabRates ? (
-                    <span className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full font-semibold">Active</span>
+                    <span className="text-[12px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full font-semibold">Active</span>
                   ) : (
-                    <span className="text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-semibold">Disabled</span>
+                    <span className="text-[12px] bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-semibold">Disabled</span>
                   )}
                   <span className="text-muted-foreground group-open:rotate-180 transition-transform duration-200">
                     ▼
@@ -841,10 +841,10 @@ export default function FDCalculatorPage() {
               <div className="p-4 pt-0 border-t bg-muted/10 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-b pb-3">
                   <div className="space-y-1">
-                    <Label htmlFor="slab-lookup-toggle" className="text-xs font-bold">
+                    <Label htmlFor="slab-lookup-toggle" className="text-sm font-bold">
                       Enable Slab-based Rate Lookup
                     </Label>
-                    <p className="text-[11px] text-muted-foreground">
+                    <p className="text-[13px] text-muted-foreground">
                       Automatically lookup Elapsed ROI based on how many days the FD was active.
                     </p>
                   </div>
@@ -859,7 +859,7 @@ export default function FDCalculatorPage() {
 
                 <div className="space-y-4 pt-2">
                   <div className="flex justify-between items-center flex-wrap gap-3">
-                    <Label className="text-xs font-bold text-foreground">Custom Tenor Slabs (General Public Rates)</Label>
+                    <Label className="text-sm font-bold text-foreground">Custom Tenor Slabs (General Public Rates)</Label>
                     <div className="flex gap-2">
                       <Button
                         type="button"
@@ -867,7 +867,7 @@ export default function FDCalculatorPage() {
                         size="sm"
                         onClick={addSlab}
                         disabled={!useSlabRates}
-                        className="h-7 text-[10px] flex items-center gap-1 hover:bg-muted"
+                        className="h-7 text-[12px] flex items-center gap-1 hover:bg-muted"
                       >
                         <Plus className="w-3.5 h-3.5" /> Add Slab
                       </Button>
@@ -876,7 +876,7 @@ export default function FDCalculatorPage() {
                         variant="ghost"
                         size="sm"
                         onClick={resetSlabs}
-                        className="h-7 text-[10px] text-primary hover:bg-primary/10 border"
+                        className="h-7 text-[12px] text-primary hover:bg-primary/10 border"
                       >
                         Reset Slabs to SBI Defaults
                       </Button>
@@ -885,11 +885,11 @@ export default function FDCalculatorPage() {
 
                   {slabValidation.warnings.length > 0 && (
                     <div className="p-3 rounded-lg border border-amber-500/20 bg-amber-500/5 text-amber-800 dark:text-amber-300 space-y-1">
-                      <div className="flex items-center gap-1.5 font-bold text-xs">
+                      <div className="flex items-center gap-1.5 font-bold text-sm">
                         <AlertCircle className="w-4 h-4 shrink-0 text-amber-500" />
                         Slab Configuration Warnings
                       </div>
-                      <ul className="list-disc pl-5 space-y-0.5 text-[11px] font-medium">
+                      <ul className="list-disc pl-5 space-y-0.5 text-[13px] font-medium">
                         {slabValidation.warnings.map((w, idx) => (
                           <li key={idx}>{w}</li>
                         ))}
@@ -900,7 +900,7 @@ export default function FDCalculatorPage() {
                   <div className="overflow-x-auto rounded-lg border bg-background">
                     <table className="w-full border-collapse text-left min-w-[500px]">
                       <thead>
-                        <tr className="border-b bg-muted/50 text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                        <tr className="border-b bg-muted/50 text-[12px] font-bold text-muted-foreground uppercase tracking-wider">
                           <th className="py-2.5 px-3">Min Days</th>
                           <th className="py-2.5 px-3">Max Days</th>
                           <th className="py-2.5 px-3">Rate (%)</th>
@@ -908,7 +908,7 @@ export default function FDCalculatorPage() {
                           <th className="py-2.5 px-3 text-right">Actions</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y text-xs">
+                      <tbody className="divide-y text-sm">
                         {slabs.map((slab) => (
                           <tr key={slab.id} className="hover:bg-muted/30 transition-colors">
                             <td className="py-2 px-3 w-32">
@@ -917,7 +917,7 @@ export default function FDCalculatorPage() {
                                 value={slab.minDays}
                                 onChange={(e) => updateSlab(slab.id, "minDays", cleanIntegerInput(e.target.value))}
                                 disabled={!useSlabRates}
-                                className="h-8 font-mono text-xs w-full"
+                                className="h-8 font-mono text-sm w-full"
                                 placeholder="e.g. 7"
                               />
                             </td>
@@ -927,7 +927,7 @@ export default function FDCalculatorPage() {
                                 value={slab.maxDays}
                                 onChange={(e) => updateSlab(slab.id, "maxDays", cleanIntegerInput(e.target.value))}
                                 disabled={!useSlabRates}
-                                className="h-8 font-mono text-xs w-full"
+                                className="h-8 font-mono text-sm w-full"
                                 placeholder="e.g. 45"
                               />
                             </td>
@@ -937,12 +937,12 @@ export default function FDCalculatorPage() {
                                 value={slab.rate}
                                 onChange={(e) => updateSlab(slab.id, "rate", cleanNumericInput(e.target.value))}
                                 disabled={!useSlabRates}
-                                className="h-8 font-mono text-xs w-full"
+                                className="h-8 font-mono text-sm w-full"
                                 placeholder="e.g. 3.05"
                               />
                             </td>
                             <td className="py-2 px-3 hidden sm:table-cell align-middle text-muted-foreground">
-                              <span className="px-2 py-0.5 rounded bg-muted/60 font-medium text-[10px] font-mono">
+                              <span className="px-2 py-0.5 rounded bg-muted/60 font-medium text-[12px] font-mono">
                                 {formatSlabRangePreview(slab.minDays, slab.maxDays)}
                               </span>
                             </td>
@@ -963,10 +963,38 @@ export default function FDCalculatorPage() {
                       </tbody>
                     </table>
                   </div>
+
+                  {/* Advisory Note: How to choose Elapsed ROI */}
+                  <div className="flex gap-3 p-4 rounded-xl border border-amber-400/30 bg-amber-50/60 dark:bg-amber-950/20 dark:border-amber-500/20">
+                    <div className="shrink-0 mt-0.5">
+                      <Info className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div className="space-y-2 text-sm text-amber-900 dark:text-amber-200 leading-relaxed">
+                      <p className="font-semibold text-amber-800 dark:text-amber-300">
+                        📌 How to choose the Revised ROI for the Elapsed Period?
+                      </p>
+                      <p>
+                        The <span className="font-bold">Elapsed ROI</span> must be chosen carefully as per your bank&apos;s rules.
+                        It is generally the <span className="font-bold">lower of the two rates</span> applicable for the elapsed period, as on:
+                      </p>
+                      <ol className="list-decimal pl-5 space-y-1">
+                        <li>
+                          <span className="font-semibold">(I) Today</span> — the date you are breaking, extending, or taking the FD before maturity.
+                        </li>
+                        <li>
+                          <span className="font-semibold">(II) Original FDR Date</span> — the date when the Fixed Deposit was originally created.
+                        </li>
+                      </ol>
+                      <p className="text-[13px] text-amber-700 dark:text-amber-400 italic font-medium pt-1">
+                        ✦ Touch the graph below for more information on how breaking at different points affects your returns.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </details>
           </Card>
+
 
           {/* ========================================== */}
           {/* VISUAL SEPARATOR                           */}
@@ -976,7 +1004,7 @@ export default function FDCalculatorPage() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center">
-              <span className="bg-background px-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              <span className="bg-background px-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 Analysis & Decision Recommendation
               </span>
             </div>
@@ -995,11 +1023,11 @@ export default function FDCalculatorPage() {
               </div>
 
               <div className="space-y-1 flex-1 text-center sm:text-left">
-                <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Advisory Outcome</span>
+                <span className="text-sm font-bold uppercase tracking-wide text-muted-foreground">Advisory Outcome</span>
                 <h3 className="text-lg font-extrabold text-foreground leading-tight">
                   {results.netBenefit > 0 ? "Recommended: Break & Reinvest!" : "Recommended: Keep Original FD"}
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {results.netBenefit > 0
                     ? `Great news! Breaking your FD and reinvesting at ${results.newRoi}% puts an extra ${formatRupee(results.netBenefit)} in your pocket by maturity. It's worth making the switch.`
                     : `Breaking your FD right now isn't in your favour — you'd walk away with ${formatRupee(Math.abs(results.netBenefit))} less than if you simply held on till maturity. Sit tight and let your current FD run its course.`
@@ -1008,7 +1036,7 @@ export default function FDCalculatorPage() {
               </div>
 
               <div className={`px-4 py-2 rounded-xl text-center shrink-0 ${bannerStyle.badge}`}>
-                <span className="block text-[9px] uppercase tracking-wider font-bold">{results.netBenefit >= 0 ? "Net Benefit" : "Net Loss"}</span>
+                <span className="block text-[11px] uppercase tracking-wider font-bold">{results.netBenefit >= 0 ? "Net Benefit" : "Net Loss"}</span>
                 <span className="text-lg font-black font-mono">
                   {results.netBenefit >= 0 ? "+" : ""}{formatRupee(results.netBenefit)}
                 </span>
@@ -1021,12 +1049,12 @@ export default function FDCalculatorPage() {
               {/* Option 1: Hold current FD */}
               <Card className="shadow-sm border border-l-4 border-l-primary">
                 <CardHeader className="pb-1 pt-3.5 bg-muted/5 border-b">
-                  <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Option 1: Hold Current FD to Maturity</CardTitle>
-                  <CardDescription className="text-[10px] text-muted-foreground mt-0.5">
+                  <CardTitle className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Option 1: Hold Current FD to Maturity</CardTitle>
+                  <CardDescription className="text-[12px] text-muted-foreground mt-0.5">
                     (If you do not break your FD and keep it as is)
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2.5 text-xs pt-4 pb-4">
+                <CardContent className="space-y-2.5 text-sm pt-4 pb-4">
                   <div className="flex justify-between items-center py-1 border-b">
                     <span className="text-muted-foreground">Final Maturity Date:</span>
                     <span className="font-semibold font-mono text-foreground">{results.calcMaturityDateStr}</span>
@@ -1041,7 +1069,7 @@ export default function FDCalculatorPage() {
                   </div>
                   <div className="flex justify-between items-center pt-2">
                     <span className="text-muted-foreground font-bold">Maturity Payout Value:</span>
-                    <span className="font-black text-primary font-mono text-sm">{formatRupee(results.maturityValueA)}</span>
+                    <span className="font-black text-primary font-mono text-base">{formatRupee(results.maturityValueA)}</span>
                   </div>
                 </CardContent>
               </Card>
@@ -1049,17 +1077,17 @@ export default function FDCalculatorPage() {
               {/* Option 2: Break & Reinvest */}
               <Card className={`shadow-sm border ${results.netBenefit > 0 ? "border-l-4 border-l-emerald-500" : "border-l-4 border-l-rose-500"}`}>
                 <CardHeader className="pb-1 pt-3.5 bg-muted/5 border-b">
-                  <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Option 2: Break & Reinvest Today</CardTitle>
-                  <CardDescription className="text-[10px] text-muted-foreground mt-0.5">
+                  <CardTitle className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Option 2: Break & Reinvest Today</CardTitle>
+                  <CardDescription className="text-[12px] text-muted-foreground mt-0.5">
                     (Close early, receive payout, and reinvest at the new rate)
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2.5 text-xs pt-4 pb-4">
+                <CardContent className="space-y-2.5 text-sm pt-4 pb-4">
                   <div className="flex justify-between items-center py-1 border-b">
                     <span className="text-muted-foreground font-medium">1st Period Interest (Elapsed):</span>
                     <span className="font-semibold font-mono text-foreground">{formatRupee(results.interestEarnedOnBreak)}</span>
                   </div>
-                  <div className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-500/10 px-2.5 py-1.5 rounded-md border border-indigo-500/20 -mt-0.5 mb-2 leading-relaxed">
+                  <div className="text-[13px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-500/10 px-2.5 py-1.5 rounded-md border border-indigo-500/20 -mt-0.5 mb-2 leading-relaxed">
                     Earned over <span className="font-extrabold text-foreground font-mono">{results.daysElapsed} Days</span> at <span className="font-extrabold text-foreground font-mono">{results.elapsedRoi}%</span> net ROI
                   </div>
 
@@ -1067,7 +1095,7 @@ export default function FDCalculatorPage() {
                     <span className="text-muted-foreground font-medium">Payout Received on Break:</span>
                     <span className="font-semibold font-mono text-foreground">{formatRupee(results.breakValue)}</span>
                   </div>
-                  <div className="text-[10px] text-muted-foreground -mt-1 mb-2 leading-normal italic pl-1">
+                  <div className="text-[12px] text-muted-foreground -mt-1 mb-2 leading-normal italic pl-1">
                     Principal + 1st Period Interest (reinvested next)
                   </div>
 
@@ -1075,13 +1103,13 @@ export default function FDCalculatorPage() {
                     <span className="text-muted-foreground font-medium">2nd Period Interest (Reinvest):</span>
                     <span className="font-semibold font-mono text-foreground">{formatRupee(results.interestRemaining)}</span>
                   </div>
-                  <div className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-500/10 px-2.5 py-1.5 rounded-md border border-indigo-500/20 -mt-0.5 mb-2 leading-relaxed">
+                  <div className="text-[13px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-500/10 px-2.5 py-1.5 rounded-md border border-indigo-500/20 -mt-0.5 mb-2 leading-relaxed">
                     Earned over <span className="font-extrabold text-foreground font-mono">{results.daysRemaining} Days</span> at <span className="font-extrabold text-foreground font-mono">{results.newRoi}%</span> ROI
                   </div>
 
                   <div className="flex justify-between items-center pt-2 border-t mt-2">
                     <span className="text-muted-foreground font-bold">Final Reinvest Payout Value:</span>
-                    <span className={`font-black font-mono text-sm ${results.netBenefit > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
+                    <span className={`font-black font-mono text-base ${results.netBenefit > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
                       {formatRupee(results.reinvestedValue)}
                     </span>
                   </div>
@@ -1093,30 +1121,30 @@ export default function FDCalculatorPage() {
             {/* Break-Even Timeline Analysis Card - Full Width */}
             <Card className="shadow-md border border-border/80">
               <CardHeader className="pb-2 pt-4 bg-muted/20 border-b">
-                <CardTitle className="text-xs font-bold flex items-center gap-2">
+                <CardTitle className="text-sm font-bold flex items-center gap-2">
                   <Calendar className="w-3.5 h-3.5 text-primary" />
                   Break-Even Threshold Window
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-4 space-y-4 text-xs">
+              <CardContent className="pt-4 space-y-4 text-sm">
                 {results.isReinvestEverProfitable ? (
                   <div className="space-y-4">
                     <div className="flex justify-between items-center p-3 rounded bg-primary/5 border border-primary/20 max-w-xl">
                       <div>
                         <span className="block text-[8px] uppercase text-muted-foreground font-bold">Break-Even Point</span>
-                        <span className="text-sm font-black font-mono text-primary">
+                        <span className="text-base font-black font-mono text-primary">
                           {results.breakEvenDateStr}
                         </span>
                       </div>
                       <div className="text-right">
                         <span className="block text-[8px] uppercase text-muted-foreground font-bold">Profitable Window</span>
-                        <span className="text-sm font-semibold text-foreground font-mono">
+                        <span className="text-base font-semibold text-foreground font-mono">
                           {`< ${results.breakEvenTimeVal} Days`}
                         </span>
                       </div>
                     </div>
 
-                    <p className="leading-relaxed text-[11px] text-muted-foreground font-medium">
+                    <p className="leading-relaxed text-[13px] text-muted-foreground font-medium">
                       Breaking on/before <strong>{results.breakEvenDateStr}</strong> yields a profit. Your proposed break date is <strong>{new Date(breakDate.replace(/-/g, "/")).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</strong>, which is{" "}
                       <span className={results.daysElapsed < results.breakEvenTimeVal ? "text-emerald-500 font-extrabold" : "text-rose-500 font-extrabold"}>
                         {results.daysElapsed < results.breakEvenTimeVal ? "PROFITABLE" : "UNPROFITABLE"}
@@ -1126,7 +1154,7 @@ export default function FDCalculatorPage() {
                 ) : (
                   <div className="flex items-start gap-2.5 p-3 rounded bg-amber-500/5 border border-amber-500/20 text-amber-800 dark:text-amber-300">
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                    <p className="leading-relaxed text-[11px]">
+                    <p className="leading-relaxed text-[13px]">
                       <strong>Reinvesting is never profitable.</strong> Because the new rate ({results.newRoi}%) is too low relative to your current settings, early closure will always result in a net loss.
                     </p>
                   </div>
@@ -1138,8 +1166,8 @@ export default function FDCalculatorPage() {
             <Card className="shadow-md border border-border/80">
               <CardHeader className="pb-2 pt-4 bg-muted/10 border-b">
                 <div className="flex justify-between items-center">
-                  <CardTitle className="text-sm font-bold">Net Benefit (₹) Curve Across FD Timeline</CardTitle>
-                  <span className="text-[10px] text-muted-foreground italic">Green = Profit Zone | Red = Loss Zone</span>
+                  <CardTitle className="text-base font-bold">Net Benefit (₹) Curve Across FD Timeline</CardTitle>
+                  <span className="text-[12px] text-muted-foreground italic">Green = Profit Zone | Red = Loss Zone</span>
                 </div>
               </CardHeader>
               <CardContent className="pt-4 pb-4">
@@ -1197,7 +1225,7 @@ export default function FDCalculatorPage() {
                             if (active && payload && payload.length) {
                               const data = payload[0].payload;
                               return (
-                                <div className="bg-background/95 border p-2.5 rounded-md shadow-md text-[10px] font-medium space-y-1.5 min-w-[200px]">
+                                <div className="bg-background/95 border p-2.5 rounded-md shadow-md text-[12px] font-medium space-y-1.5 min-w-[200px]">
                                   <p className="font-bold text-foreground border-b pb-1 mb-1">{data.fullDateStr || `Day ${data.step}`}</p>
                                   <div className="space-y-0.5">
                                     <p className="text-muted-foreground flex justify-between gap-4">
@@ -1318,7 +1346,7 @@ export default function FDCalculatorPage() {
                     </ResponsiveContainer>
                   </div>
                 ) : (
-                  <div className="w-full h-[380px] bg-muted animate-pulse rounded-md flex items-center justify-center text-xs text-muted-foreground">
+                  <div className="w-full h-[380px] bg-muted animate-pulse rounded-md flex items-center justify-center text-sm text-muted-foreground">
                     Loading chart...
                   </div>
                 )}
@@ -1326,11 +1354,11 @@ export default function FDCalculatorPage() {
             </Card>
 
             {/* Mathematical Note */}
-            <div className="p-4 rounded-xl border border-indigo-500/20 bg-indigo-500/5 text-indigo-800 dark:text-indigo-300 text-xs flex gap-2.5 shadow-sm leading-relaxed">
+            <div className="p-4 rounded-xl border border-indigo-500/20 bg-indigo-500/5 text-indigo-800 dark:text-indigo-300 text-sm flex gap-2.5 shadow-sm leading-relaxed">
               <Info className="w-4 h-4 shrink-0 mt-0.5" />
               <div>
                 <strong>Quarterly Compounding Math:</strong> Calculations use the quarterly compounding formula:
-                <div className="font-mono text-[10px] mt-1 bg-background/50 p-1.5 rounded border border-indigo-500/10">
+                <div className="font-mono text-[12px] mt-1 bg-background/50 p-1.5 rounded border border-indigo-500/10">
                   A = P * (1 + R / 400)^Q
                 </div>
                 where <span className="font-bold">Q = Days * 4 / 365</span>. Breaking the FD prematurely recalculates interest earned so far at the effective elapsed rate (standard elapsed rate minus penalty if applied), which is then reinvested at the new rate for the remaining duration.
